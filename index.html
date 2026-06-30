@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Academic Rookie Survival Kit</title>
+<style>
+  :root{
+    --bg:#0f1115;
+    --panel:#15181f;
+    --panel-border:#262a33;
+    --text:#e9ebf0;
+    --muted:#9aa1ad;
+    --accent:#5b8cff;
+    --accent-soft:rgba(91,140,255,0.12);
+    --card-bg:#1a1e27;
+    --card-border:#2a2f3a;
+    --tag-bg:#222736;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    display:flex;
+    min-height:100vh;
+  }
+
+  /* ---------- Sidebar ---------- */
+  .sidebar{
+    width:260px;
+    flex-shrink:0;
+    background:var(--panel);
+    border-right:1px solid var(--panel-border);
+    padding:28px 18px;
+    position:sticky;
+    top:0;
+    height:100vh;
+    overflow-y:auto;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:0 6px 22px 6px;
+    border-bottom:1px solid var(--panel-border);
+    margin-bottom:18px;
+  }
+  .brand-mark{
+    width:34px;height:34px;border-radius:9px;
+    background:linear-gradient(135deg,#5b8cff,#9b6bff);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-size:15px;color:#fff;
+    flex-shrink:0;
+  }
+  .brand-text h1{
+    font-size:14.5px;
+    margin:0;
+    font-weight:700;
+    letter-spacing:.2px;
+    line-height:1.25;
+  }
+  .brand-text span{
+    font-size:11px;
+    color:var(--muted);
+  }
+  nav.nav-group{margin-bottom:22px;}
+  .nav-label{
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--muted);
+    padding:0 10px 8px 10px;
+    font-weight:600;
+  }
+  .nav-link{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:9px 10px;
+    border-radius:8px;
+    color:var(--text);
+    text-decoration:none;
+    font-size:13.5px;
+    margin-bottom:2px;
+    cursor:pointer;
+    transition:background .15s ease;
+  }
+  .nav-link:hover{background:var(--accent-soft);}
+  .nav-link.active{
+    background:var(--accent-soft);
+    color:var(--accent);
+    font-weight:600;
+  }
+  .nav-link .dot{
+    width:6px;height:6px;border-radius:50%;
+    background:var(--muted);
+    flex-shrink:0;
+  }
+  .nav-link.active .dot{background:var(--accent);}
+  .nav-link.soon{
+    color:var(--muted);
+    cursor:default;
+  }
+  .nav-link.soon:hover{background:none;}
+  .soon-badge{
+    margin-left:auto;
+    font-size:9.5px;
+    background:var(--tag-bg);
+    color:var(--muted);
+    padding:2px 6px;
+    border-radius:5px;
+    letter-spacing:.03em;
+  }
+  .sidebar-footer{
+    margin-top:auto;
+    padding:14px 10px 0 10px;
+    font-size:11px;
+    color:var(--muted);
+    border-top:1px solid var(--panel-border);
+  }
+
+  /* ---------- Main content ---------- */
+  .main{
+    flex:1;
+    padding:40px 48px 80px 48px;
+    max-width:1100px;
+  }
+  .page-header{margin-bottom:34px;}
+  .page-header h2{
+    font-size:26px;
+    margin:0 0 8px 0;
+    font-weight:700;
+  }
+  .page-header p{
+    color:var(--muted);
+    font-size:14.5px;
+    line-height:1.6;
+    max-width:680px;
+    margin:0;
+  }
+
+  .search-bar{
+    margin:22px 0 28px 0;
+    display:flex;
+    gap:10px;
+  }
+  .search-bar input{
+    flex:1;
+    background:var(--card-bg);
+    border:1px solid var(--card-border);
+    color:var(--text);
+    padding:10px 14px;
+    border-radius:8px;
+    font-size:13.5px;
+    outline:none;
+  }
+  .search-bar input:focus{border-color:var(--accent);}
+
+  section.block{margin-bottom:48px;}
+  .block-title{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    margin-bottom:6px;
+  }
+  .block-title h3{
+    font-size:18px;
+    margin:0;
+    font-weight:700;
+  }
+  .block-title .count{
+    font-size:12px;
+    color:var(--muted);
+  }
+  .block-desc{
+    color:var(--muted);
+    font-size:13.5px;
+    margin:0 0 18px 0;
+    line-height:1.6;
+    max-width:680px;
+  }
+
+  .card-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
+    gap:16px;
+  }
+  .card{
+    background:var(--card-bg);
+    border:1px solid var(--card-border);
+    border-radius:12px;
+    padding:18px 18px 16px 18px;
+    text-decoration:none;
+    color:var(--text);
+    display:flex;
+    flex-direction:column;
+    transition:transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+  }
+  .card:hover{
+    transform:translateY(-2px);
+    border-color:var(--accent);
+    box-shadow:0 8px 24px rgba(91,140,255,0.12);
+  }
+  .card-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:10px;
+  }
+  .card-name{
+    font-size:15px;
+    font-weight:700;
+  }
+  .card-arrow{
+    color:var(--muted);
+    font-size:14px;
+  }
+  .card-url{
+    font-size:11.5px;
+    color:var(--accent);
+    margin-bottom:10px;
+    word-break:break-all;
+  }
+  .card-desc{
+    font-size:13px;
+    color:var(--muted);
+    line-height:1.55;
+    flex:1;
+  }
+  .card-tags{
+    margin-top:12px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+  }
+  .tag{
+    font-size:10.5px;
+    background:var(--tag-bg);
+    color:#aeb7ff;
+    padding:3px 8px;
+    border-radius:6px;
+    font-weight:600;
+    letter-spacing:.02em;
+  }
+
+  .coming-soon-block{
+    border:1px dashed var(--card-border);
+    border-radius:12px;
+    padding:24px;
+    text-align:center;
+    color:var(--muted);
+    font-size:13.5px;
+  }
+
+  @media (max-width: 880px){
+    body{flex-direction:column;}
+    .sidebar{
+      width:100%;
+      height:auto;
+      position:relative;
+      border-right:none;
+      border-bottom:1px solid var(--panel-border);
+    }
+    .main{padding:28px 20px 60px 20px;}
+  }
+</style>
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">AS</div>
+      <div class="brand-text">
+        <h1>Academic Rookie<br>Survival Kit</h1>
+        <span>a growing toolbox for new PhDs</span>
+      </div>
+    </div>
+
+    <nav class="nav-group">
+      <div class="nav-label">Browse</div>
+      <a class="nav-link active" data-target="trackers">
+        <span class="dot"></span> Conference Deadline Trackers
+      </a>
+      <a class="nav-link" data-target="hosting">
+        <span class="dot"></span> Conference Sites &amp; CMS
+      </a>
+    </nav>
+
+    <nav class="nav-group">
+      <div class="nav-label">Coming soon</div>
+      <a class="nav-link soon">
+        <span class="dot"></span> Writing &amp; LaTeX Tools
+        <span class="soon-badge">SOON</span>
+      </a>
+      <a class="nav-link soon">
+        <span class="dot"></span> Paper Discovery
+        <span class="soon-badge">SOON</span>
+      </a>
+      <a class="nav-link soon">
+        <span class="dot"></span> Funding &amp; Travel Grants
+        <span class="soon-badge">SOON</span>
+      </a>
+      <a class="nav-link soon">
+        <span class="dot"></span> Self-media &amp; Outreach
+        <span class="soon-badge">SOON</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      Built by a PhD student, for PhD students.<br>
+      Updated periodically as new tools are found.
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="page-header">
+      <h2>Conference &amp; Deadline Resources</h2>
+      <p>A curated set of sites that track academic conference deadlines, calls for papers, and conference websites &mdash; so you stop missing submission windows and start planning a year ahead.</p>
+    </div>
+
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search by name, focus area, or keyword (e.g. AI, software engineering, CFP)...">
+    </div>
+
+    <section class="block" id="trackers">
+      <div class="block-title">
+        <h3>Conference Deadline Trackers</h3>
+        <span class="count">8 sites</span>
+      </div>
+      <p class="block-desc">These sites aggregate submission deadlines across many venues so you can plan your paper pipeline without checking every conference website one by one.</p>
+      <div class="card-grid" id="trackerGrid"></div>
+    </section>
+
+    <section class="block" id="hosting">
+      <div class="block-title">
+        <h3>Conference Sites &amp; CMS</h3>
+        <span class="count">3 sites</span>
+      </div>
+      <p class="block-desc">These aren't deadline trackers &mdash; they're where individual conferences actually live: registration, program, venue, and submission system. Use these once you already know which conference you're targeting.</p>
+      <div class="card-grid" id="hostingGrid"></div>
+    </section>
+
+    <section class="block">
+      <div class="coming-soon-block">
+        More categories (writing tools, funding, self-media growth) are on the way as this survival kit grows.
+      </div>
+    </section>
+  </main>
+
+<script>
+const trackers = [
+  {
+    name: "SE Deadlines",
+    url: "https://se-deadlines.github.io/",
+    desc: "Countdown timers for the top Software Engineering research venues (ICSE, FSE, ASE, and more). The most direct fit if you're publishing in SE.",
+    tags: ["Software Engineering", "Countdown"]
+  },
+  {
+    name: "ML Deadlines",
+    url: "https://mldeadlines.com/",
+    desc: "Auto-updated deadlines for Machine Learning, Computer Vision, NLP, HCI, and AI conferences.",
+    tags: ["AI / ML", "CV / NLP"]
+  },
+  {
+    name: "AI Deadlines",
+    url: "https://huggingface.co/spaces/huggingface/ai-deadlines",
+    desc: "Community-maintained tracker (hosted on Hugging Face Spaces) for AI conference, workshop, and journal submission deadlines. Updates fast since it's crowd-sourced.",
+    tags: ["AI / ML", "Community"]
+  },
+  {
+    name: "CSConf",
+    url: "https://roars.dev/csconfs/",
+    desc: "Cross-domain CS deadline tracker spanning Software Engineering, AI, Security, Systems, and more &mdash; useful if your work sits between fields.",
+    tags: ["Cross-domain", "CS"]
+  },
+  {
+    name: "WikiCFP",
+    url: "http://www.wikicfp.com/cfp/",
+    desc: "The oldest and broadest general-purpose Call-for-Papers database, covering nearly every academic discipline. Good for discovery, but can lag on accuracy.",
+    tags: ["General CFP", "All disciplines"]
+  },
+  {
+    name: "PLSE Deadlines",
+    url: "https://github.com/plseddl/plse-deadlines",
+    desc: "Deadline countdowns focused on Programming Languages and Software Engineering conferences.",
+    tags: ["PL", "Software Engineering"]
+  },
+  {
+    name: "AI/ML Conference Tracker",
+    url: "https://www.aiconftracker.com/",
+    desc: "Another dedicated AI/ML conference deadline tracker, handy as a cross-check against ML Deadlines or AI Deadlines.",
+    tags: ["AI / ML"]
+  },
+  {
+    name: "Bibby Conference Deadlines",
+    url: "https://trybibby.com/conference-deadlines",
+    desc: "A standing register of submission deadlines across Computer Science, neuroscience, physics, and mathematics, ticking down in real time.",
+    tags: ["Cross-discipline"]
+  }
+];
+
+const hosting = [
+  {
+    name: "conf.researchr.org",
+    url: "https://conf.researchr.org/",
+    desc: "A conference management CMS (built at TU Delft) that hosts the official websites for many Software Engineering conferences &mdash; ICSE, FSE, ASE, and their workshops. Go here for registration, program, and important dates once you know the conference name.",
+    tags: ["Official site", "Registration"]
+  },
+  {
+    name: "DBLP",
+    url: "https://dblp.org/",
+    desc: "The standard bibliography database for Computer Science. Use it to check a venue's publication history, find past accepted papers, or look up an author's record.",
+    tags: ["Bibliography", "Venue history"]
+  },
+  {
+    name: "OpenReview",
+    url: "https://openreview.net/",
+    desc: "The review platform used by many AI/ML venues (ICLR, NeurIPS-adjacent workshops, and others). Useful for reading open reviews and tracking submission status.",
+    tags: ["Review platform", "AI / ML"]
+  }
+];
+
+function cardHTML(item){
+  return `
+    <a class="card" href="${item.url}" target="_blank" rel="noopener noreferrer" data-search="${(item.name + ' ' + item.desc + ' ' + item.tags.join(' ')).toLowerCase()}">
+      <div class="card-top">
+        <span class="card-name">${item.name}</span>
+        <span class="card-arrow">&#8599;</span>
+      </div>
+      <div class="card-url">${item.url.replace(/^https?:\/\//,'')}</div>
+      <div class="card-desc">${item.desc}</div>
+      <div class="card-tags">${item.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+    </a>
+  `;
+}
+
+document.getElementById('trackerGrid').innerHTML = trackers.map(cardHTML).join('');
+document.getElementById('hostingGrid').innerHTML = hosting.map(cardHTML).join('');
+
+document.getElementById('searchInput').addEventListener('input', function(e){
+  const q = e.target.value.trim().toLowerCase();
+  document.querySelectorAll('.card').forEach(card => {
+    const match = card.getAttribute('data-search').includes(q);
+    card.style.display = match ? 'flex' : 'none';
+  });
+});
+
+document.querySelectorAll('.nav-link[data-target]').forEach(link => {
+  link.addEventListener('click', () => {
+    document.querySelectorAll('.nav-link[data-target]').forEach(l => l.classList.remove('active'));
+    link.classList.add('active');
+    document.getElementById(link.dataset.target).scrollIntoView({behavior:'smooth', block:'start'});
+  });
+});
+</script>
+
+</body>
+</html>
