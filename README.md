@@ -1,8 +1,10 @@
 # Academic Rookie Survival Kit
 
+English | [中文](README.zh-CN.md)
+
 A small, growing reference site for new PhD students: conference deadline trackers and official conference sites, organized so you stop missing submission windows.
 
-**Live site:** published via GitHub Pages.
+**Live site:** published via GitHub Pages. [English](https://alexli-77.github.io/academic-survival-kit/) · [中文](https://alexli-77.github.io/academic-survival-kit/zh.html)
 
 ## What's here
 

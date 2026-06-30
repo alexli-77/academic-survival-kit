@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Academic Rookie Survival Kit</title>
+<title>学术新人自救工具箱</title>
 <style>
   :root{
     --bg:#0f1115;
@@ -20,7 +20,7 @@
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
   body{
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Inter,Roboto,Helvetica,Arial,sans-serif;
     background:var(--bg);
     color:var(--text);
     display:flex;
@@ -59,7 +59,7 @@
     margin:0;
     font-weight:700;
     letter-spacing:.2px;
-    line-height:1.25;
+    line-height:1.35;
   }
   .brand-text span{
     font-size:11px;
@@ -154,7 +154,7 @@
   .page-header p{
     color:var(--muted);
     font-size:14.5px;
-    line-height:1.6;
+    line-height:1.7;
     max-width:680px;
     margin:0;
   }
@@ -196,7 +196,7 @@
     color:var(--muted);
     font-size:13.5px;
     margin:0 0 18px 0;
-    line-height:1.6;
+    line-height:1.7;
     max-width:680px;
   }
 
@@ -244,7 +244,7 @@
   .card-desc{
     font-size:13px;
     color:var(--muted);
-    line-height:1.55;
+    line-height:1.65;
     flex:1;
   }
   .card-tags{
@@ -291,79 +291,79 @@
     <div class="brand">
       <div class="brand-mark">AS</div>
       <div class="brand-text">
-        <h1>Academic Rookie<br>Survival Kit</h1>
-        <span>a growing toolbox for new PhDs</span>
+        <h1>学术新人<br>自救工具箱</h1>
+        <span>写给新手博士生的成长工具箱</span>
       </div>
     </div>
 
     <nav class="nav-group">
-      <div class="nav-label">Browse</div>
+      <div class="nav-label">浏览</div>
       <a class="nav-link active" data-target="trackers">
-        <span class="dot"></span> Conference Deadline Trackers
+        <span class="dot"></span> 会议截止日期追踪
       </a>
       <a class="nav-link" data-target="hosting">
-        <span class="dot"></span> Conference Sites &amp; CMS
+        <span class="dot"></span> 会议官网与CMS
       </a>
     </nav>
 
     <nav class="nav-group">
-      <div class="nav-label">Coming soon</div>
+      <div class="nav-label">即将上线</div>
       <a class="nav-link soon">
-        <span class="dot"></span> Writing &amp; LaTeX Tools
+        <span class="dot"></span> 写作与LaTeX工具
         <span class="soon-badge">SOON</span>
       </a>
       <a class="nav-link soon">
-        <span class="dot"></span> Paper Discovery
+        <span class="dot"></span> 论文检索
         <span class="soon-badge">SOON</span>
       </a>
       <a class="nav-link soon">
-        <span class="dot"></span> Funding &amp; Travel Grants
+        <span class="dot"></span> 经费与差旅资助
         <span class="soon-badge">SOON</span>
       </a>
       <a class="nav-link soon">
-        <span class="dot"></span> Self-media &amp; Outreach
+        <span class="dot"></span> 自媒体与影响力
         <span class="soon-badge">SOON</span>
       </a>
     </nav>
 
     <div class="sidebar-footer">
-      Built by a PhD student, for PhD students.<br>
-      Updated periodically as new tools are found.
+      由一名博士生为博士生打造。<br>
+      随发现的新工具持续更新。
     </div>
   </aside>
 
   <main class="main">
-    <div class="lang-switch"><a href="zh.html">中文</a></div>
+    <div class="lang-switch"><a href="index.html">EN</a></div>
     <div class="page-header">
-      <h2>Conference &amp; Deadline Resources</h2>
-      <p>A curated set of sites that track academic conference deadlines, calls for papers, and conference websites &mdash; so you stop missing submission windows and start planning a year ahead.</p>
+      <h2>会议与截止日期资源</h2>
+      <p>一份精选网站清单，帮你追踪学术会议的投稿截止日期、征稿启事（CFP）和会议官网 &mdash; 让你不再错过投稿窗口，提前一年规划论文产出。</p>
     </div>
 
     <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="Search by name, focus area, or keyword (e.g. AI, software engineering, CFP)...">
+      <input type="text" id="searchInput" placeholder="按名称、领域或关键词搜索（如 AI、软件工程、CFP）...">
     </div>
 
     <section class="block" id="trackers">
       <div class="block-title">
-        <h3>Conference Deadline Trackers</h3>
-        <span class="count">8 sites</span>
+        <h3>会议截止日期追踪</h3>
+        <span class="count">8个网站</span>
       </div>
-      <p class="block-desc">These sites aggregate submission deadlines across many venues so you can plan your paper pipeline without checking every conference website one by one.</p>
+      <p class="block-desc">这些网站汇总了多个会议的投稿截止日期，让你不用逐个查官网就能规划自己的论文产出节奏。</p>
       <div class="card-grid" id="trackerGrid"></div>
     </section>
 
     <section class="block" id="hosting">
       <div class="block-title">
-        <h3>Conference Sites &amp; CMS</h3>
-        <span class="count">3 sites</span>
+        <h3>会议官网与CMS</h3>
+        <span class="count">3个网站</span>
       </div>
-      <p class="block-desc">These aren't deadline trackers &mdash; they're where individual conferences actually live: registration, program, venue, and submission system. Use these once you already know which conference you're targeting.</p>
+      <p class="block-desc">这些不是截止日期追踪工具，而是具体某个会议真正"住"的地方 &mdash; 注册、日程、场地和投稿系统都在这里。等你确定了目标会议名字之后再来这里查。</p>
       <div class="card-grid" id="hostingGrid"></div>
     </section>
 
     <section class="block">
       <div class="coming-soon-block">
-        More categories (writing tools, funding, self-media growth) are on the way as this survival kit grows.
+        更多分类（写作工具、经费资助、自媒体影响力）会随着这个工具箱的成长陆续加入。
       </div>
     </section>
   </main>
@@ -373,50 +373,50 @@ const trackers = [
   {
     name: "SE Deadlines",
     url: "https://se-deadlines.github.io/",
-    desc: "Countdown timers for the top Software Engineering research venues (ICSE, FSE, ASE, and more). The most direct fit if you're publishing in SE.",
-    tags: ["Software Engineering", "Countdown"]
+    desc: "顶级软件工程研究会议（ICSE、FSE、ASE等）的截止日期倒计时。如果你发表方向是软件工程，这是最对口的一个。",
+    tags: ["软件工程", "倒计时"]
   },
   {
     name: "ML Deadlines",
     url: "https://mldeadlines.com/",
-    desc: "Auto-updated deadlines for Machine Learning, Computer Vision, NLP, HCI, and AI conferences.",
+    desc: "机器学习、计算机视觉、NLP、HCI、AI类会议的截止日期，自动更新。",
     tags: ["AI / ML", "CV / NLP"]
   },
   {
     name: "AI Deadlines",
     url: "https://huggingface.co/spaces/huggingface/ai-deadlines",
-    desc: "Community-maintained tracker (hosted on Hugging Face Spaces) for AI conference, workshop, and journal submission deadlines. Updates fast since it's crowd-sourced.",
-    tags: ["AI / ML", "Community"]
+    desc: "由社区维护（托管在 Hugging Face Spaces 上）的AI会议、workshop、期刊截止日期追踪，众包更新速度很快。",
+    tags: ["AI / ML", "社区维护"]
   },
   {
     name: "CSConf",
     url: "https://roars.dev/csconfs/",
-    desc: "Cross-domain CS deadline tracker spanning Software Engineering, AI, Security, Systems, and more &mdash; useful if your work sits between fields.",
-    tags: ["Cross-domain", "CS"]
+    desc: "跨领域CS截止日期追踪，覆盖软件工程、AI、安全、系统等多个方向 &mdash; 如果你的研究横跨多个领域会很有用。",
+    tags: ["跨领域", "CS"]
   },
   {
     name: "WikiCFP",
     url: "http://www.wikicfp.com/cfp/",
-    desc: "The oldest and broadest general-purpose Call-for-Papers database, covering nearly every academic discipline. Good for discovery, but can lag on accuracy.",
-    tags: ["General CFP", "All disciplines"]
+    desc: "历史最悠久、覆盖面最广的通用征稿（CFP）数据库，几乎涵盖所有学科。适合用来发现新会议，但准确性有时会滞后。",
+    tags: ["通用CFP", "全学科"]
   },
   {
     name: "PLSE Deadlines",
     url: "https://github.com/plseddl/plse-deadlines",
-    desc: "Deadline countdowns focused on Programming Languages and Software Engineering conferences.",
-    tags: ["PL", "Software Engineering"]
+    desc: "专注于编程语言（PL）和软件工程（SE）方向的会议截止日期倒计时。",
+    tags: ["PL", "软件工程"]
   },
   {
     name: "AI/ML Conference Tracker",
     url: "https://www.aiconftracker.com/",
-    desc: "Another dedicated AI/ML conference deadline tracker, handy as a cross-check against ML Deadlines or AI Deadlines.",
+    desc: "另一个专门的AI/ML会议截止日期追踪网站，可以和 ML Deadlines、AI Deadlines 互相对照核实。",
     tags: ["AI / ML"]
   },
   {
     name: "Bibby Conference Deadlines",
     url: "https://trybibby.com/conference-deadlines",
-    desc: "A standing register of submission deadlines across Computer Science, neuroscience, physics, and mathematics, ticking down in real time.",
-    tags: ["Cross-discipline"]
+    desc: "一份持续更新的截止日期清单，覆盖计算机科学、神经科学、物理学和数学，实时倒计时。",
+    tags: ["跨学科"]
   }
 ];
 
@@ -424,20 +424,20 @@ const hosting = [
   {
     name: "conf.researchr.org",
     url: "https://conf.researchr.org/",
-    desc: "A conference management CMS (built at TU Delft) that hosts the official websites for many Software Engineering conferences &mdash; ICSE, FSE, ASE, and their workshops. Go here for registration, program, and important dates once you know the conference name.",
-    tags: ["Official site", "Registration"]
+    desc: "一个会议建站系统（由代尔夫特理工大学开发），托管了许多软件工程会议的官网 &mdash; ICSE、FSE、ASE及其workshop。一旦你知道目标会议的名字，来这里查注册、日程和重要日期。",
+    tags: ["官方站点", "注册"]
   },
   {
     name: "DBLP",
     url: "https://dblp.org/",
-    desc: "The standard bibliography database for Computer Science. Use it to check a venue's publication history, find past accepted papers, or look up an author's record.",
-    tags: ["Bibliography", "Venue history"]
+    desc: "计算机科学领域的标准文献数据库。可以用来查某个会议的发表历史、找过往录用论文，或查某位作者的发表记录。",
+    tags: ["文献库", "会议历史"]
   },
   {
     name: "OpenReview",
     url: "https://openreview.net/",
-    desc: "The review platform used by many AI/ML venues (ICLR, NeurIPS-adjacent workshops, and others). Useful for reading open reviews and tracking submission status.",
-    tags: ["Review platform", "AI / ML"]
+    desc: "许多AI/ML会议（ICLR及一些NeurIPS相关workshop等）使用的评审平台。可以查看公开评审意见、追踪投稿状态。",
+    tags: ["评审平台", "AI / ML"]
   }
 ];
 
