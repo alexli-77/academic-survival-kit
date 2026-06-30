@@ -345,6 +345,9 @@
       <a class="nav-link" data-target="hosting">
         <span class="dot"></span> Conference Sites &amp; CMS
       </a>
+      <a class="nav-link" data-target="cv-templates">
+        <span class="dot"></span> CV &amp; Resume Templates
+      </a>
     </nav>
 
     <div class="sidebar-footer">
@@ -367,7 +370,7 @@
     </div>
 
     <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="Search by name, focus area, or keyword (e.g. AI, software engineering, CFP)...">
+      <input type="text" id="searchInput" placeholder="Search by name, focus area, or keyword (e.g. AI, software engineering, CFP, CV)...">
     </div>
 
     <section class="block" id="trackers">
@@ -386,6 +389,15 @@
       </div>
       <p class="block-desc">These aren't deadline trackers &mdash; they're where individual conferences actually live: registration, program, venue, and submission system. Use these once you already know which conference you're targeting.</p>
       <div class="card-grid" id="hostingGrid"></div>
+    </section>
+
+    <section class="block" id="cv-templates">
+      <div class="block-title">
+        <h3>CV &amp; Resume Templates</h3>
+        <span class="count">5 templates</span>
+      </div>
+      <p class="block-desc">Clean templates for academic CVs, industry resumes, and region-specific applications. Prefer simple one-column layouts for ATS-heavy industry applications.</p>
+      <div class="card-grid" id="cvGrid"></div>
     </section>
   </main>
 
@@ -462,6 +474,39 @@ const hosting = [
   }
 ];
 
+const cvTemplates = [
+  {
+    name: "Harvard Resume Template",
+    url: "https://careerservices.fas.harvard.edu/resources/hes-resume-cover-letter-template/",
+    desc: "A conservative, ATS-friendly resume structure for internships, full-time roles, consulting, product, operations, and general industry applications.",
+    tags: ["Resume", "ATS-friendly"]
+  },
+  {
+    name: "Jake's Resume",
+    url: "https://cs.overleaf.com/latex/templates/jakes-resume/syzfjbzwjncs",
+    desc: "A compact LaTeX resume template popular with software engineering, data, AI, and quantitative candidates who need a dense one-page layout.",
+    tags: ["LaTeX", "Tech"]
+  },
+  {
+    name: "Simple Academic CV",
+    url: "https://www.overleaf.com/latex/templates/simple-academic-cv-and-cover-letter/jcbnpttqffzm",
+    desc: "A straightforward academic CV and cover letter template for research assistant, PhD, postdoc, teaching, and publication-heavy applications.",
+    tags: ["Academic CV", "LaTeX"]
+  },
+  {
+    name: "Harvard PhD Resume Guide",
+    url: "https://careerservices.fas.harvard.edu/resources/phd-resume-cover-letter-template/",
+    desc: "Examples and guidance for graduate students and PhDs translating research experience into industry-facing resumes and cover letters.",
+    tags: ["PhD", "Industry"]
+  },
+  {
+    name: "Europass CV",
+    url: "https://europass.europa.eu/en/create-europass-cv",
+    desc: "A standardized CV builder commonly used for European school, fellowship, and job applications, with support for multiple languages.",
+    tags: ["Europe", "CV builder"]
+  }
+];
+
 function cardHTML(item){
   return `
     <a class="card" href="${item.url}" target="_blank" rel="noopener noreferrer" data-search="${(item.name + ' ' + item.desc + ' ' + item.tags.join(' ')).toLowerCase()}">
@@ -478,6 +523,7 @@ function cardHTML(item){
 
 document.getElementById('trackerGrid').innerHTML = trackers.map(cardHTML).join('');
 document.getElementById('hostingGrid').innerHTML = hosting.map(cardHTML).join('');
+document.getElementById('cvGrid').innerHTML = cvTemplates.map(cardHTML).join('');
 
 document.getElementById('searchInput').addEventListener('input', function(e){
   const q = e.target.value.trim().toLowerCase();

@@ -345,6 +345,9 @@
       <a class="nav-link" data-target="hosting">
         <span class="dot"></span> 会议官网与CMS
       </a>
+      <a class="nav-link" data-target="cv-templates">
+        <span class="dot"></span> CV / 简历模板
+      </a>
     </nav>
 
     <div class="sidebar-footer">
@@ -367,7 +370,7 @@
     </div>
 
     <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="按名称、领域或关键词搜索（如 AI、软件工程、CFP）...">
+      <input type="text" id="searchInput" placeholder="按名称、领域或关键词搜索（如 AI、软件工程、CFP、CV）...">
     </div>
 
     <section class="block" id="trackers">
@@ -386,6 +389,15 @@
       </div>
       <p class="block-desc">这些不是截止日期追踪工具，而是具体某个会议真正"住"的地方 &mdash; 注册、日程、场地和投稿系统都在这里。等你确定了目标会议名字之后再来这里查。</p>
       <div class="card-grid" id="hostingGrid"></div>
+    </section>
+
+    <section class="block" id="cv-templates">
+      <div class="block-title">
+        <h3>CV / 简历模板</h3>
+        <span class="count">5个模板</span>
+      </div>
+      <p class="block-desc">适合学术 CV、求职简历和不同地区申请的模板。投公司系统时，优先选择简洁单栏、ATS 友好的版本。</p>
+      <div class="card-grid" id="cvGrid"></div>
     </section>
   </main>
 
@@ -462,6 +474,39 @@ const hosting = [
   }
 ];
 
+const cvTemplates = [
+  {
+    name: "Harvard Resume Template",
+    url: "https://careerservices.fas.harvard.edu/resources/hes-resume-cover-letter-template/",
+    desc: "稳妥、简洁、ATS友好的简历结构，适合实习、全职、咨询、产品、运营和大多数北美公司申请。",
+    tags: ["求职简历", "ATS友好"]
+  },
+  {
+    name: "Jake's Resume",
+    url: "https://cs.overleaf.com/latex/templates/jakes-resume/syzfjbzwjncs",
+    desc: "很受软件工程、数据、AI和量化候选人欢迎的 LaTeX 简历模板，适合一页内高密度展示项目与经历。",
+    tags: ["LaTeX", "技术岗"]
+  },
+  {
+    name: "Simple Academic CV",
+    url: "https://www.overleaf.com/latex/templates/simple-academic-cv-and-cover-letter/jcbnpttqffzm",
+    desc: "简洁的学术 CV 与 cover letter 模板，适合 RA、PhD、博士后、教学和发表经历较多的申请场景。",
+    tags: ["学术CV", "LaTeX"]
+  },
+  {
+    name: "Harvard PhD Resume Guide",
+    url: "https://careerservices.fas.harvard.edu/resources/phd-resume-cover-letter-template/",
+    desc: "面向研究生和博士的简历指南，帮助把研究、教学和项目经历转换成更适合 industry 的表达。",
+    tags: ["博士", "Industry"]
+  },
+  {
+    name: "Europass CV",
+    url: "https://europass.europa.eu/en/create-europass-cv",
+    desc: "欧洲常见的标准化 CV 生成器，适合欧洲学校、奖学金、项目和部分公司申请，支持多语言。",
+    tags: ["欧洲", "CV生成器"]
+  }
+];
+
 function cardHTML(item){
   return `
     <a class="card" href="${item.url}" target="_blank" rel="noopener noreferrer" data-search="${(item.name + ' ' + item.desc + ' ' + item.tags.join(' ')).toLowerCase()}">
@@ -478,6 +523,7 @@ function cardHTML(item){
 
 document.getElementById('trackerGrid').innerHTML = trackers.map(cardHTML).join('');
 document.getElementById('hostingGrid').innerHTML = hosting.map(cardHTML).join('');
+document.getElementById('cvGrid').innerHTML = cvTemplates.map(cardHTML).join('');
 
 document.getElementById('searchInput').addEventListener('input', function(e){
   const q = e.target.value.trim().toLowerCase();
