@@ -11,8 +11,6 @@
 - **会议截止日期追踪** —— 汇总多个会议投稿截止日期的网站（SE Deadlines、ML Deadlines、AI Deadlines、CSConf、WikiCFP、PLSE Deadlines、AI/ML Conference Tracker、Bibby Conference Deadlines）。
 - **会议官网与CMS** —— 等你确定了目标会议名字之后，真正去查注册、日程、场地的地方（conf.researchr.org、DBLP、OpenReview）。
 
-后续会陆续加入更多分类（写作工具、经费与差旅资助、自媒体与影响力）。
-
 ## 本地开发
 
 这是一个纯静态的单文件 `index.html`（英文版）/ `zh.html`（中文版），内联了 CSS/JS，不需要构建步骤。直接用浏览器打开，或者本地起个服务：
