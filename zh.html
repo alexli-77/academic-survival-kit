@@ -16,6 +16,22 @@
     --card-bg:#1a1e27;
     --card-border:#2a2f3a;
     --tag-bg:#222736;
+    --tag-text:#aeb7ff;
+    --shadow:rgba(91,140,255,0.12);
+  }
+  body.light-theme{
+    --bg:#f6f7f9;
+    --panel:#ffffff;
+    --panel-border:#e6e8ec;
+    --text:#1b1e24;
+    --muted:#6b7280;
+    --accent:#3a5cf0;
+    --accent-soft:rgba(58,92,240,0.08);
+    --card-bg:#ffffff;
+    --card-border:#e6e8ec;
+    --tag-bg:#eef1ff;
+    --tag-text:#3a5cf0;
+    --shadow:rgba(58,92,240,0.10);
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
@@ -25,6 +41,7 @@
     color:var(--text);
     display:flex;
     min-height:100vh;
+    transition:background .2s ease, color .2s ease;
   }
 
   /* ---------- Sidebar ---------- */
@@ -122,7 +139,9 @@
   }
   .lang-switch{
     display:flex;
+    align-items:center;
     justify-content:flex-end;
+    gap:8px;
     margin-bottom:10px;
   }
   .lang-switch a{
@@ -138,6 +157,28 @@
     color:var(--accent);
     border-color:var(--accent);
   }
+  .theme-toggle{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:28px;
+    height:28px;
+    border:1px solid var(--card-border);
+    border-radius:6px;
+    background:transparent;
+    color:var(--muted);
+    cursor:pointer;
+    padding:0;
+    transition:color .15s ease, border-color .15s ease;
+  }
+  .theme-toggle:hover{
+    color:var(--accent);
+    border-color:var(--accent);
+  }
+  .theme-toggle svg{width:15px;height:15px;}
+  .theme-toggle .icon-moon{display:none;}
+  body.light-theme .theme-toggle .icon-sun{display:none;}
+  body.light-theme .theme-toggle .icon-moon{display:block;}
 
   /* ---------- Main content ---------- */
   .main{
@@ -219,7 +260,7 @@
   .card:hover{
     transform:translateY(-2px);
     border-color:var(--accent);
-    box-shadow:0 8px 24px rgba(91,140,255,0.12);
+    box-shadow:0 8px 24px var(--shadow);
   }
   .card-top{
     display:flex;
@@ -256,7 +297,7 @@
   .tag{
     font-size:10.5px;
     background:var(--tag-bg);
-    color:#aeb7ff;
+    color:var(--tag-text);
     padding:3px 8px;
     border-radius:6px;
     font-weight:600;
@@ -333,7 +374,13 @@
   </aside>
 
   <main class="main">
-    <div class="lang-switch"><a href="index.html">EN</a></div>
+    <div class="lang-switch">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="切换浅色/深色主题">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+      <a href="index.html">EN</a>
+    </div>
     <div class="page-header">
       <h2>会议与截止日期资源</h2>
       <p>一份精选网站清单，帮你追踪学术会议的投稿截止日期、征稿启事（CFP）和会议官网 &mdash; 让你不再错过投稿窗口，提前一年规划论文产出。</p>
@@ -473,6 +520,27 @@ document.querySelectorAll('.nav-link[data-target]').forEach(link => {
     document.getElementById(link.dataset.target).scrollIntoView({behavior:'smooth', block:'start'});
   });
 });
+
+/* ---------- Theme toggle (light/dark) ---------- */
+(function(){
+  const THEME_KEY = 'academic-survival-kit-theme';
+  const toggleBtn = document.getElementById('themeToggle');
+
+  function applyTheme(theme){
+    document.body.classList.toggle('light-theme', theme === 'light');
+    toggleBtn.setAttribute('aria-label', theme === 'light' ? '切换为深色主题' : '切换为浅色主题');
+  }
+
+  const stored = localStorage.getItem(THEME_KEY);
+  const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+  applyTheme(stored || (prefersLight ? 'light' : 'dark'));
+
+  toggleBtn.addEventListener('click', () => {
+    const next = document.body.classList.contains('light-theme') ? 'dark' : 'light';
+    applyTheme(next);
+    localStorage.setItem(THEME_KEY, next);
+  });
+})();
 </script>
 
 </body>
