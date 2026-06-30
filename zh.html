@@ -272,6 +272,13 @@
       radial-gradient(circle at 18% 20%, rgba(91,140,255,.18), transparent 28%),
       linear-gradient(135deg, rgba(91,140,255,.16), rgba(155,107,255,.10) 48%, rgba(59,214,169,.10));
   }
+  .card-preview img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+    object-position:top center;
+  }
   .preview-chrome{
     height:100%;
     display:flex;
@@ -621,7 +628,35 @@ const cvTemplates = [
   }
 ];
 
+const previewImages = {
+  "SE Deadlines": "assets/previews/se-deadlines.jpg",
+  "ML Deadlines": "assets/previews/ml-deadlines.jpg",
+  "AI Deadlines": "assets/previews/ai-deadlines.jpg",
+  "CSConf": "assets/previews/csconf.jpg",
+  "WikiCFP": "assets/previews/wikicfp.jpg",
+  "PLSE Deadlines": "assets/previews/plse-deadlines.jpg",
+  "AI/ML Conference Tracker": "assets/previews/aiconftracker.jpg",
+  "Bibby Conference Deadlines": "assets/previews/bibby-deadlines.jpg",
+  "conf.researchr.org": "assets/previews/researchr.jpg",
+  "DBLP": "assets/previews/dblp.jpg",
+  "OpenReview": "assets/previews/openreview.jpg",
+  "Harvard Resume Template": "assets/previews/harvard-resume.jpg",
+  "Jake's Resume": "assets/previews/jakes-resume.jpg",
+  "Simple Academic CV": "assets/previews/academic-cv.jpg",
+  "Harvard PhD Resume Guide": "assets/previews/harvard-phd.jpg",
+  "Europass CV": "assets/previews/europass-cv.jpg"
+};
+
 function previewHTML(item){
+  const preview = previewImages[item.name];
+  if (preview){
+    return `
+      <div class="card-preview">
+        <img src="${preview}" alt="${item.name} 网站预览" loading="lazy">
+      </div>
+    `;
+  }
+
   const seed = item.name.split('').reduce((total, char) => total + char.charCodeAt(0), 0);
   const heights = [34, 52, 28, 44, 62].map((value, index) => ((value + seed + index * 13) % 58) + 18);
   const initials = item.name.split(/[\s/.-]+/).filter(Boolean).slice(0, 2).map(word => word[0]).join('').toUpperCase();
